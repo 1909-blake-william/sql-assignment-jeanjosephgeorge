@@ -14,10 +14,22 @@ SELECT * FROM EMPLOYEE WHERE FIRSTNAME = 'Andrew' AND REPORTSTO IS NULL;
 -- Task � Select all albums in Album table and sort result set in descending order by title.
 SELECT * FROM ALBUM ORDER BY TITLE DESC;
 -- Task � Select first name from Customer and sort result set in ascending order by city
+SELECT FIRSTNAME FROM CUSTOMER ORDER BY CITY ASC;
+
 
 -- 2.3 INSERT INTO
+SELECT * FROM EMPLOYEE;
 -- Task � Insert two new records into Genre table
+INSERT INTO GENRE (GENREID, Name) VALUES (26, 'Psychedelic');
+INSERT INTO GENRE (GENREID, Name) VALUES (27, 'Death Metal');
+
 -- Task � Insert two new records into Employee table
+INSERT INTO EMPLOYEE(EMPLOYEEID, LASTNAME, FIRSTNAME, TITLE, REPORTSTO, BIRTHDATE, HIREDATE, ADDRESS, CITY, STATE, COUNTRY, POSTALCODE, PHONE, FAX, EMAIL)
+VALUES (9, 'Jean', 'George', 'Customer Service', 4, TO_DATE('1984/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2019/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), '6747 Strawberry Brook Lane', 'Dickinson', 'Texas','USA','77539','8328956087','8328956088','jean.joseph@outlook.com');
+
+INSERT INTO EMPLOYEE(EMPLOYEEID, LASTNAME, FIRSTNAME, TITLE, REPORTSTO, BIRTHDATE, HIREDATE, ADDRESS, CITY, STATE, COUNTRY, POSTALCODE, PHONE, FAX, EMAIL)
+VALUES (10, 'Jim', 'George', 'Chief Technologist', 4, TO_DATE('1986/04/15 20:12:24', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), '6747 Strawberry Brook Lane', 'Dickinson', 'Texas','USA','77539','8328956087','8328956088','jim.dot.dot@gmail.com');
+
 -- Task � Insert two new records into Customer table
 -- 2.4 UPDATE
 -- Task � Update Aaron Mitchell in Customer table to Robert Walter
