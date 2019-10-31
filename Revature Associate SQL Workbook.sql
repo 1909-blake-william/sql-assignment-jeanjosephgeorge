@@ -18,7 +18,6 @@ SELECT FIRSTNAME FROM CUSTOMER ORDER BY CITY ASC;
 
 
 -- 2.3 INSERT INTO
-SELECT * FROM EMPLOYEE;
 -- Task � Insert two new records into Genre table
 INSERT INTO GENRE (GENREID, Name) VALUES (26, 'Psychedelic');
 INSERT INTO GENRE (GENREID, Name) VALUES (27, 'Death Metal');
@@ -30,17 +29,40 @@ VALUES (9, 'Jean', 'George', 'Customer Service', 4, TO_DATE('1984/05/03 21:02:44
 INSERT INTO EMPLOYEE(EMPLOYEEID, LASTNAME, FIRSTNAME, TITLE, REPORTSTO, BIRTHDATE, HIREDATE, ADDRESS, CITY, STATE, COUNTRY, POSTALCODE, PHONE, FAX, EMAIL)
 VALUES (10, 'Jim', 'George', 'Chief Technologist', 4, TO_DATE('1986/04/15 20:12:24', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), '6747 Strawberry Brook Lane', 'Dickinson', 'Texas','USA','77539','8328956087','8328956088','jim.dot.dot@gmail.com');
 
+SELECT * FROM CUSTOMER;
 -- Task � Insert two new records into Customer table
+INSERT INTO CUSTOMER(CUSTOMERID,FIRSTNAME,LASTNAME,COMPANY,ADDRESS,CITY,STATE, COUNTRY, POSTALCODE,PHONE,FAX,EMAIL,SUPPORTREPID)
+VALUES (60,'Herbert','Schumer','Apple','123 Asphalt Drive','Reston','Virginia','USA',20190,'2315437224','2342632210','herbiederbie@gmail.com',2);
+
+INSERT INTO CUSTOMER(CUSTOMERID,FIRSTNAME,LASTNAME,COMPANY,ADDRESS,CITY,STATE, COUNTRY, POSTALCODE,PHONE,FAX,EMAIL,SUPPORTREPID)
+VALUES (61,'Salacious','Sal','Google','2003 Mango Hills Lane','Reston','Virginia','USA',20190,'2318523224','782132210','themangoman@gmail.com',4);
+
 -- 2.4 UPDATE
 -- Task � Update Aaron Mitchell in Customer table to Robert Walter
+UPDATE CUSTOMER SET FIRSTNAME = 'Robert', LASTNAME = 'Walter' WHERE FIRSTNAME = 'Aaron' AND LASTNAME = 'Mitchell';
+
 -- Task � Update name of artist in the Artist table �Creedence Clearwater Revival� to �CCR�
+UPDATE ARTIST SET NAME = 'CCR' WHERE NAME ='Creedence Clearwater Revival';
+
 -- 2.5 LIKE
 -- Task � Select all invoices with a billing address like �T%�
+SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%' ;
+
 -- 2.6 BETWEEN
 -- Task � Select all invoices that have a total between 15 and 50
+SELECT * FROM INVOICE WHERE TOTAL BETWEEN 15 AND 50;
 -- Task � Select all employees hired between 1st of June 2003 and 1st of March 2004
+SELECT * FROM EMPLOYEE WHERE HIREDATE BETWEEN TO_DATE('2003/06/01 00:00:00', 'yyyy/mm/dd hh24:mi:ss') AND TO_DATE('2004/03/01 00:00:00', 'yyyy/mm/dd hh24:mi:ss')
 -- 2.7 DELETE
 -- Task � Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
+ALTER TABLE INVOICE DROP CONSTRAINT fk_invoicecustomerid;
+ALTER TABLE INVOICE DROP CONSTRAINT fk_invoicelineinvoiceid;
+ALTER TABLE INVOICE
+ADD CONSTRAINT fk_invoicecustomerid
+   FOREIGN KEY (CustomerID)
+   REFERENCES CUSTOMER (CustomerId)
+   ON DELETE CASCADE;
+DELETE FROM CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
 
 -- 3.0 SQL Functions
 -- In this section you will be using the Oracle system functions, as well as your own functions, to perform various actions against the database
